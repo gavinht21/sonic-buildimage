@@ -34,7 +34,9 @@ resources:
 
 stages:
 - stage: Build
-  pool: sonicbld
+  #pool: sonicbld
+  pool:
+    vmImage: 'ubuntu-20.04'
   variables:
   - template: .azure-pipelines/azure-pipelines-repd-build-variables.yml
   - name: CACHE_MODE
