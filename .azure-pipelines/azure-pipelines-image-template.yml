@@ -27,6 +27,16 @@ jobs:
     preSteps:
       - template: cleanup.yml
       - ${{ parameters.preSteps }}
+      - bash: |
+          set -ex
+          # cpu info
+          uname -a
+          cat /proc/cpuinfo
+          # meminfo
+          free -m
+          # disk
+          df -h
+        displayName: "Display the pool system configuration"
       - script: |
           if [ -n "$(CACHE_MODE)" ] && echo $(PLATFORM_AZP) | grep -E -q "^(vs|broadcom|mellanox)$"; then
             CACHE_OPTIONS="SONIC_DPKG_CACHE_METHOD=$(CACHE_MODE) SONIC_DPKG_CACHE_SOURCE=/nfs/dpkg_cache/$(PLATFORM_AZP)"
