@@ -99,6 +99,9 @@ jobs:
     buildSteps:
       - bash: |
           set -ex
+          # check info
+          free -h
+          df -h
           if [ $(GROUP_NAME) == vs ]; then
             if [ $(dbg_image) == yes ]; then
               make $BUILD_OPTIONS INSTALL_DEBUG_TOOLS=y target/sonic-vs.img.gz
