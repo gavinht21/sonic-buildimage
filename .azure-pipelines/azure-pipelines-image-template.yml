@@ -36,7 +36,7 @@ jobs:
           free -m
           # disk
           df -h
-        displayName: "Display the pool system configuration"
+        displayName: "Display system configuration 1#"
       - script: |
           if [ -n "$(CACHE_MODE)" ] && echo $(PLATFORM_AZP) | grep -E -q "^(vs|broadcom|mellanox)$"; then
             CACHE_OPTIONS="SONIC_DPKG_CACHE_METHOD=$(CACHE_MODE) SONIC_DPKG_CACHE_SOURCE=/nfs/dpkg_cache/$(PLATFORM_AZP)"
@@ -59,6 +59,13 @@ jobs:
           sudo pip3 install j2cli
           ENABLE_DOCKER_BASE_PULL=y make PLATFORM=$(PLATFORM_AZP) PLATFORM_ARCH=$(PLATFORM_ARCH) $(BUILD_OPTIONS) configure
         displayName: 'Make configure'
+      - bash: |
+          set -ex
+          # meminfo
+          free -m
+          # disk
+          df -h
+        displayName: "Display system configuration 2#"
     postSteps:
       - script: cp target -r $(Build.ArtifactStagingDirectory)/
         displayName: Copy Artifacts
