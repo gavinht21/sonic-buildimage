@@ -29,6 +29,7 @@ jobs:
       - ${{ parameters.preSteps }}
       - bash: |
           set -ex
+          whoami
           pwd
           # cpu info
           uname -a
