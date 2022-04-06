@@ -61,12 +61,15 @@ jobs:
         displayName: 'Make configure'
       - bash: |
           set -ex
-          # meminfo
           free -m
-          # disk
           df -h
         displayName: "Display system configuration 2#"
     postSteps:
+      - bash: |
+          set -ex
+          free -m
+          df -h
+        displayName: "Display system configuration 3#"
       - script: cp target -r $(Build.ArtifactStagingDirectory)/
         displayName: Copy Artifacts
         condition: always()
@@ -79,5 +82,10 @@ jobs:
         displayName: "Archive failed sonic image"
       - ${{ parameters.postSteps }}
       - template: cleanup.yml
+      - bash: |
+          set -ex
+          free -m
+          df -h
+        displayName: "Display system configuration end#"
     jobGroups: ${{ parameters.jobGroups }}
     buildSteps: ${{ parameters.buildSteps }}
