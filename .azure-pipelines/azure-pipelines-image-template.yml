@@ -29,6 +29,7 @@ jobs:
       - ${{ parameters.preSteps }}
       - bash: |
           set -ex
+          pwd
           # cpu info
           uname -a
           cat /proc/cpuinfo
@@ -36,7 +37,7 @@ jobs:
           free -m
           # disk
           df -h
-          du -sh
+          du -sh /
         condition: always()
         displayName: "Display system configuration 1#"
       - script: |
@@ -65,7 +66,7 @@ jobs:
           set -ex
           free -m
           df -h
-          du -sh
+          du -sh /
         condition: always()
         displayName: "Display system configuration 2#"
     postSteps:
@@ -73,7 +74,7 @@ jobs:
           set -ex
           free -m
           df -h
-          du -sh
+          du -sh /
         condition: always()
         displayName: "Display system configuration 3#"
       - script: cp target -r $(Build.ArtifactStagingDirectory)/
@@ -92,7 +93,7 @@ jobs:
           set -ex
           free -m
           df -h
-          du -sh
+          du -sh /
         condition: always()
         displayName: "Display system configuration end#"
     jobGroups: ${{ parameters.jobGroups }}
