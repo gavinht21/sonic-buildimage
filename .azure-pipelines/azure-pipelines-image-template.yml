@@ -36,6 +36,7 @@ jobs:
           free -m
           # disk
           df -h
+        condition: always()
         displayName: "Display system configuration 1#"
       - script: |
           if [ -n "$(CACHE_MODE)" ] && echo $(PLATFORM_AZP) | grep -E -q "^(vs|broadcom|mellanox)$"; then
@@ -63,12 +64,14 @@ jobs:
           set -ex
           free -m
           df -h
+        condition: always()
         displayName: "Display system configuration 2#"
     postSteps:
       - bash: |
           set -ex
           free -m
           df -h
+        condition: always()
         displayName: "Display system configuration 3#"
       - script: cp target -r $(Build.ArtifactStagingDirectory)/
         displayName: Copy Artifacts
@@ -86,6 +89,7 @@ jobs:
           set -ex
           free -m
           df -h
+        condition: always()
         displayName: "Display system configuration end#"
     jobGroups: ${{ parameters.jobGroups }}
     buildSteps: ${{ parameters.buildSteps }}
