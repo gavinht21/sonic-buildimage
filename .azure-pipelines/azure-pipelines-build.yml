@@ -133,4 +133,6 @@ jobs:
             fi
             make $BUILD_OPTIONS target/sonic-$(GROUP_NAME).bin
           fi
+          #condition: always()
+        condition: failed()
         displayName: "Build sonic image"
