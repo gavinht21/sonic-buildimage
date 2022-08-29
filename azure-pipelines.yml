@@ -34,9 +34,10 @@ resources:
 
 stages:
 - stage: Build
+  pool: sonic-server-14
   #pool: sonicbld
-  pool:
-    vmImage: 'ubuntu-20.04'
+  #pool:
+  #  vmImage: 'ubuntu-20.04'
     #vmImage: 'ubuntu-18.04'
   variables:
   - template: .azure-pipelines/azure-pipelines-repd-build-variables.yml
