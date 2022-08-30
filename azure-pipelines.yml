@@ -46,13 +46,14 @@ stages:
   jobs:
   - template: .azure-pipelines/azure-pipelines-build.yml
     parameters:
+      timeoutInMinutes: 2880
       buildOptions: 'USERNAME=admin SONIC_BUILD_JOBS=$(nproc) ${{ variables.VERSION_CONTROL_OPTIONS }}'
       jobGroups:
-#      - name: vs
-      - name: broadcom
+      - name: vs
+      # - name: broadcom
         variables:
           swi_image: yes
-#      - name: mellanox
+    #  - name: mellanox
 
 #- stage: Test
 #  variables:
